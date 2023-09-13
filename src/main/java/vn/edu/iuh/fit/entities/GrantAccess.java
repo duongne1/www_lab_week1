@@ -34,6 +34,7 @@ public class GrantAccess {
         return is_grant;
     }
 
+
     public void setIs_grant(boolean is_grant) {
         this.is_grant = is_grant;
     }
