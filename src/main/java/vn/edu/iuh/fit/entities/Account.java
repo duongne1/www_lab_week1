@@ -1,4 +1,4 @@
 package vn.edu.iuh.fit.entities;
 
-public class Employee {
+public class Account {
 }
