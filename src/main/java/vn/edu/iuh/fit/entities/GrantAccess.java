@@ -1,50 +1,77 @@
 package vn.edu.iuh.fit.entities;
 
-public class GrantAccess {
-    private String role_id;
-    private String account_id;
-    private boolean is_grant;
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
-    public GrantAccess(String role_id, String account_id, boolean is_grant) {
-        this.role_id = role_id;
-        this.account_id = account_id;
-        this.is_grant = is_grant;
-    }
+import java.io.Serializable;
+
+@Entity
+@Table(name = "grant_access")
+public class GrantAccess implements Serializable {
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+    @Column(name = "is_grant", columnDefinition = "bit")
+    @ColumnDefault("1")
+    private boolean isGrant;
+    @Column(columnDefinition = "varchar(250)")
+    @ColumnDefault("''")
+    private String note;
 
     public GrantAccess() {
     }
 
-    public String getRole_id() {
-        return role_id;
+    public GrantAccess(Account account, Role role, boolean isGrant, String note) {
+        this.account = account;
+        this.role = role;
+        this.isGrant = isGrant;
+        this.note = note;
     }
 
-    public void setRole_id(String role_id) {
-        this.role_id = role_id;
+    public Account getAccount() {
+        return account;
     }
 
-    public String getAccount_id() {
-        return account_id;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
-    public void setAccount_id(String account_id) {
-        this.account_id = account_id;
+    public Role getRole() {
+        return role;
     }
 
-    public boolean isIs_grant() {
-        return is_grant;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
+    public boolean isGrant() {
+        return isGrant;
+    }
 
-    public void setIs_grant(boolean is_grant) {
-        this.is_grant = is_grant;
+    public void setGrant(boolean grant) {
+        isGrant = grant;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     @Override
     public String toString() {
         return "GrantAccess{" +
-                "role_id='" + role_id + '\'' +
-                ", account_id='" + account_id + '\'' +
-                ", is_grant=" + is_grant +
+                "account=" + account +
+                ", role=" + role +
+                ", isGrant=" + isGrant +
+                ", note='" + note + '\'' +
                 '}';
     }
 }

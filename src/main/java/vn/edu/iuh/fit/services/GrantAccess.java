@@ -1,4 +1,4 @@
 package vn.edu.iuh.fit.services;
 
-public class EmployeeService {
+public class GrantAccess {
 }

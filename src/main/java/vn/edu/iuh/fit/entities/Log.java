@@ -1,23 +1,43 @@
 package vn.edu.iuh.fit.entities;
 
-import java.sql.Timestamp;
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "log")
 public class Log {
+    @Id
+    @Column(columnDefinition = "bigint(20)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String account_id;
-    private Timestamp login_time;
-    private Timestamp logout_time;
+    @Column(name = "account_id", columnDefinition = "varchar(50)", nullable = false)
+    private String accountId;
+    @Column(name = "login_time", columnDefinition = "DATETIME", nullable = false)
+    private LocalDateTime loginTime;
+    @Column(name = "logout_time", columnDefinition = "DATETIME", nullable = false)
+    private LocalDateTime logoutTime;
+    @Column(columnDefinition = "varchar(250)", nullable = false)
+    @ColumnDefault("''")
     private String notes;
 
-    public Log(int id, String account_id, Timestamp login_time, Timestamp logout_time, String notes) {
+    public Log() {
+    }
+
+    public Log(int id, String accountId, LocalDateTime loginTime, LocalDateTime logoutTime, String notes) {
         this.id = id;
-        this.account_id = account_id;
-        this.login_time = login_time;
-        this.logout_time = logout_time;
+        this.accountId = accountId;
+        this.loginTime = loginTime;
+        this.logoutTime = logoutTime;
         this.notes = notes;
     }
 
-    public Log() {
+    public Log(String accountId, LocalDateTime loginTime, LocalDateTime logoutTime, String notes) {
+        this.accountId = accountId;
+        this.loginTime = loginTime;
+        this.logoutTime = logoutTime;
+        this.notes = notes;
     }
 
     public int getId() {
@@ -28,28 +48,28 @@ public class Log {
         this.id = id;
     }
 
-    public String getAccount_id() {
-        return account_id;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setAccount_id(String account_id) {
-        this.account_id = account_id;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
-    public Timestamp getLogin_time() {
-        return login_time;
+    public LocalDateTime getLoginTime() {
+        return loginTime;
     }
 
-    public void setLogin_time(Timestamp login_time) {
-        this.login_time = login_time;
+    public void setLoginTime(LocalDateTime loginTime) {
+        this.loginTime = loginTime;
     }
 
-    public Timestamp getLogout_time() {
-        return logout_time;
+    public LocalDateTime getLogoutTime() {
+        return logoutTime;
     }
 
-    public void setLogout_time(Timestamp logout_time) {
-        this.logout_time = logout_time;
+    public void setLogoutTime(LocalDateTime logoutTime) {
+        this.logoutTime = logoutTime;
     }
 
     public String getNotes() {
@@ -64,9 +84,9 @@ public class Log {
     public String toString() {
         return "Log{" +
                 "id=" + id +
-                ", account_id='" + account_id + '\'' +
-                ", login_time=" + login_time +
-                ", logout_time=" + logout_time +
+                ", accountId='" + accountId + '\'' +
+                ", loginTime=" + loginTime +
+                ", logoutTime=" + logoutTime +
                 ", notes='" + notes + '\'' +
                 '}';
     }

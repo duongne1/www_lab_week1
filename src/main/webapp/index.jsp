@@ -2,12 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>LOGON</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<div id="index">
+    <form id="formLogin" action="action" method="get">
+        <h2 >LOGIN FORM</h2>
+        <label>User:</label>
+        <input  class="ip1" type="text" name="userName" placeholder="Enter User"/> <br>
+        <label>Password:</label>
+        <input class="ip2" type="password" name="password" placeholder="Enter password"/> <br>
+        <button type="submit" id="loginbtn" name="login" >Login</button>
+    </form>
+    <a href="dashboard.jsp">dashboard</a>
+</div>
 </body>
 </html>
